@@ -28,7 +28,8 @@ module GameHelper
 
     wrong_guess_pegs.each do |peg|
       if wrong_answer_pegs.include?(peg)
-        wrong_answer_pegs.delete(peg)
+        delete_index = wrong_answer_pegs.index(peg)
+        wrong_answer_pegs.delete_at(delete_index)
         score << SCORE_PEGS[:partly]
       end
     end

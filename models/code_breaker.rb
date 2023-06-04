@@ -1,10 +1,11 @@
 require 'set'
 require './modules/game_helper'
-
+require 'byebug'
 class CodeBreaker
   include GameHelper
 
   attr_accessor :score
+  attr_reader :possible_answers, :possible_scores
 
   def initialize
     @guess_number = 0
@@ -19,8 +20,10 @@ class CodeBreaker
 
     @all_answers = @all_answers.to_set
 
-    @possible_scores = @all_scores.dup
+    # [1111, 1112, ..., 6666]
     @possible_answers = @all_answers.dup
+    # [1111, { 1111 => 'BBBB', 1112 => 'BBBB', ..., 6666 => '' }]
+    @possible_scores = @all_scores.dup
   end
 
   def make_guess
